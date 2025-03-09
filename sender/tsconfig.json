@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    
+    "module": "NodeNext",         // Use ESNext module system
+    "moduleResolution": "NodeNext", // Resolve modules like Node.js does (this is critical for ESM)  
+    "outDir": "./dist",         // Output directory for compiled files
+    "rootDir": "./src",         // Root directory of your TypeScript files
+    "strict": true,             // Enable all strict type-checking options      // Skip type checking of declaration files (improves performance)
+    "forceConsistentCasingInFileNames": true // Enforce consistent file casing in imports
+  },
+  "include": ["src/**/*.ts"],    // Include all TypeScript files in src folder
+  "exclude": ["node_modules"]    // Exclude node
+}
