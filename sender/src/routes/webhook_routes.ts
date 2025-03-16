@@ -1,5 +1,5 @@
 import express from "express";
-import { registerWebhookHandler, getAllWebhooksHandler, getWebhooksByEventNameHandler } from "../controllers/webhook_controller.js";
+import { registerWebhookHandler, getAllWebhooksHandler, getWebhooksByEventNameHandler, triggerEventHandler } from "../controllers/webhook_controller.js";
 
 const webhookRoutes = express.Router();
 
@@ -7,6 +7,7 @@ const webhookRoutes = express.Router();
 webhookRoutes.post("/webhooks", registerWebhookHandler);  // Register webhook (presumably for adding new webhooks)
 webhookRoutes.get("/webhooks", getAllWebhooksHandler);  // Get all webhooks (with pagination)
 webhookRoutes.get("/webhooks/:eventName", getWebhooksByEventNameHandler);  // Get webhooks by event name
+webhookRoutes.post("/trigger-event/:eventName", triggerEventHandler);
 webhookRoutes.get("/", (req, res) => {
   res.send("Webhook service is running");
 });

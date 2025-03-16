@@ -20,30 +20,30 @@ export async function sendMessage(message) {
         console.error("Error in sender:", error);
     }
 }
-const messagePayload = {
-    id: "123456",
-    url: "https://example.com/images/sample.jpg",
-    name: "sample_image",
-    description: "A sample image for demonstration purposes",
-    tags: ["sample", "image", "demo"],
-    metadata: {
-        dimensions: {
-            width: 1920,
-            height: 1080,
-        },
-        format: "jpeg",
-        size_in_bytes: 204800,
-        created_at: "2024-12-23T12:00:00Z",
-        updated_at: "2024-12-23T12:00:00Z",
-    },
-    related_entities: {
-        album_id: "7890",
-        user_id: "user_456",
-    },
-    is_public: true,
-};
-const message = {
-    url: "https://eocwrsoyaqdawk4.m.pipedream.net",
-    payload: messagePayload,
-};
-sendMessage(message);
+// const messagePayload: UploadMessagePayload = {
+//   id: "123456",
+//   url: "https://example.com/images/sample.jpg",
+//   name: "sample_image",
+//   description: "A sample image for demonstration purposes",
+//   tags: ["sample", "image", "demo"],
+//   metadata: {
+//     dimensions: {
+//       width: 1920,
+//       height: 1080,
+//     },
+//     format: "jpeg",
+//     size_in_bytes: 204800,
+//     created_at: "2024-12-23T12:00:00Z",
+//     updated_at: "2024-12-23T12:00:00Z",
+//   },
+//   related_entities: {
+//     album_id: "7890",
+//     user_id: "user_456",
+//   },
+//   is_public: true,
+// };
+// const message: UploadMessage = {
+//   url: "https://eocwrsoyaqdawk4.m.pipedream.net",
+//   payload: messagePayload,
+// };
+// sendMessage(message);

@@ -45,3 +45,18 @@ export async function registerWebhookHandler(req, res) {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+export async function triggerEventHandler(req, res) {
+    const { eventName } = req.params;
+    const payload = req.body;
+    try {
+        const triggered = await webhook_service.triggerEvent(eventName, payload);
+        if (!triggered) {
+            res.status(404).json({ message: "No webhooks registered for this event" });
+        }
+        res.status(200).json({ message: "Event triggered and messages queued for delivery" });
+    }
+    catch (error) {
+        console.error("Error triggering event:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}

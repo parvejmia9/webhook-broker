@@ -1,0 +1,56 @@
+
+services:
+  express-service-1:
+    build:
+      context: ./sender # Path to your first Express app
+    container_name: express-service-1
+    depends_on:
+      rabbitmq-new:
+        condition: service_healthy
+      postgres2:
+        condition: service_healthy
+    ports:
+      - "3001:3000"  # Adjust the port if needed
+
+  express-service-2:
+    build:
+      context: ./consumer # Path to your second Express app
+    container_name: express-service-2
+    depends_on:
+      rabbitmq-new:
+       condition: service_healthy
+
+    ports:
+      - "3002:3000"  # Adjust the port if needed
+
+  rabbitmq-new:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-new
+    ports:
+      - "5672:5672"  # RabbitMQ service
+      - "15672:15672"  # RabbitMQ Management UI
+    volumes:
+      - ./rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres2:
+    image: postgres:16
+    container_name: postgres2
+    restart: always
+    environment:
+      POSTGRES_USER: abcd
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: webhook
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data2:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U abcd -d webhook"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -24,7 +24,7 @@ async function startReceiver() {
             catch (error) {
                 console.error(`Error making POST request:`, error);
                 channel.ack(msg);
-                //channel.nack(msg, false, true); // Requeue the message
+                // channel.nack(msg, false, true); // Requeue the message
             }
         }, { noAck: false });
     }

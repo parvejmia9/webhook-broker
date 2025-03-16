@@ -55,15 +55,14 @@ async function startReceiver() {
         console.log(`Received message:`, message);
 
         try {
-          
           const res = await UploadImage(message.url, message.payload);
           console.log(`POST request successful:`, res);
           channel.ack(msg);
         } catch (error) {
-          console.error(`Error making POST request:`, error);
-          //channel.ack(msg);
-          channel.nack(msg, false, true); // Requeue the message
+          console.error(`Error making POST request after retries:`, error);
+          channel.ack(msg); // Acknowledge the message after retry failures
         }
+        
       },
       { noAck: false }
     );
