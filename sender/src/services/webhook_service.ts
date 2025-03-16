@@ -36,14 +36,13 @@ export async function registerWebhook(webhookUrl: string, eventName: string) {
 
 export async function triggerEvent(eventName: string, payload: any) {  
   try {  
-    // Fetch all webhooks for the given eventName  
+     
     const webhooks = await Webhook.findAll({ where: { eventName } });  
 
     if (!webhooks || webhooks.length === 0) {  
-      return false; // No webhooks registered for this event  
+      return false; 
     }  
-
-    // Publish each webhook event to RabbitMQ  
+ 
     for (const webhook of webhooks) {  
       const webhookUrl = webhook.dataValues.webhookUrl;  
       const message = { url: webhookUrl, payload };  

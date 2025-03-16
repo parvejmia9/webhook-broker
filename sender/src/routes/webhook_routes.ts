@@ -1,6 +1,5 @@
 import express from "express";
 import { registerWebhookHandler, getAllWebhooksHandler, getWebhooksByEventNameHandler, triggerEventHandler } from "../controllers/webhook_controller.js";
-
 const webhookRoutes = express.Router();
 
 
