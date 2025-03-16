@@ -1,6 +1,6 @@
 import type { Request } from "express";
 import type { Response } from "express";
-import Webhook from "../models/webhook_model.js"; // Adjust the path as necessary
+import Webhook from "../models/webhook_model.js"; 
 import * as webhook_service from "../services/webhook_service.js";
 import { register } from "module";
 

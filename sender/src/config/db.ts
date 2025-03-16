@@ -11,9 +11,9 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST || 'localhost',
     port: parseInt(process.env.DB_PORT || '5432', 10),
     dialect: "postgres",
-    logging: console.log, // Enable logging to see detailed connection info
+    logging: console.log, 
     dialectOptions: {
-      ssl: false, // Set to true if using SSL
+      ssl: false,
     },
   }
 );

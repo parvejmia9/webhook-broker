@@ -23,7 +23,7 @@ export async function UploadImage(url: string, payload: any, retries = 5, baseDe
         throw new Error((error as Error).message);
       }
 
-      const delay = baseDelay * Math.pow(2, attempt); // Exponential backoff
+      const delay = baseDelay * Math.pow(2, attempt);
       console.log(`Retrying in ${delay}ms...`);
       await sleep(delay);
     }

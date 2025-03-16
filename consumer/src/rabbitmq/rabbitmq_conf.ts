@@ -60,7 +60,7 @@ async function startReceiver() {
           channel.ack(msg);
         } catch (error) {
           console.error(`Error making POST request after retries:`, error);
-          channel.ack(msg); // Acknowledge the message after retry failures
+          channel.ack(msg);
         }
         
       },
